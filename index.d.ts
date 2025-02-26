@@ -3,17 +3,9 @@ import { ReactNode } from 'react';
 import { XMLBuilder } from 'xmlbuilder2/lib/interfaces';
 import { XMLBuilderCreateOptions } from 'xmlbuilder2/lib/interfaces';
 
-/**
- *
- * @public
- */
-export declare function CData(props: { children: TextChildren }): null;
+export declare const CData: (props: { children: TextChildren }) => null;
 
-/**
- *
- * @public
- */
-declare function Comment_2(props: { children: TextChildren }): null;
+declare const Comment_2: (props: { children: TextChildren }) => null;
 export { Comment_2 as Comment };
 
 /**
@@ -27,7 +19,6 @@ export declare function createElement(
 ): JsxXmlComponentElement | JsxXmlTagElement;
 
 /**
- *
  * @public
  */
 export declare function Fragment(props: { children?: ReactNode }): ReactNode;
@@ -37,11 +28,7 @@ export declare function Fragment(props: { children?: ReactNode }): ReactNode;
  */
 export declare function _getCurrentElement(): XMLBuilder;
 
-/**
- *
- * @public
- */
-export declare function Ins(props: { target: string; content?: string }): null;
+export declare const Ins: (props: { target: string; content?: string }) => null;
 
 /**
  *
@@ -94,6 +81,11 @@ export declare function render(
   element: ReactElement | JsxXmlElement,
   options?: XMLBuilderCreateOptions,
 ): XMLBuilder;
+
+export declare function renderAsync(
+  element: ReactElement | JsxXmlElement,
+  options?: XMLBuilderCreateOptions,
+): Promise<XMLBuilder>;
 
 /**
  * @public
