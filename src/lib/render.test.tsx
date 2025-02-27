@@ -554,9 +554,11 @@ describe('renderAsync', () => {
       );
     }
 
-    const view = await renderAsync(<WrapperComponent />, {});
+    const xml = await renderAsync(<WrapperComponent />, {});
+
+    console.log(xml);
     expect(
-      view.end({ headless: true, prettyPrint: true }),
+      xml.end({ headless: true, prettyPrint: true }),
     ).toMatchInlineSnapshot(
       `
       "<root>
