@@ -8,6 +8,14 @@ export declare const CData: (props: { children: TextChildren }) => null;
 declare const Comment_2: (props: { children: TextChildren }) => null;
 export { Comment_2 as Comment };
 
+declare type Context<T> = {
+  Provider: ({ value, children }: { value: T; children: any }) => any;
+  contextKey: symbol;
+  defaultValue: T;
+};
+
+export declare function createContext<T>(defaultValue: T): Context<T>;
+
 /**
  *
  * @public
@@ -85,7 +93,7 @@ export declare function render(
 export declare function renderAsync(
   element: ReactElement | JsxXmlElement,
   options?: XMLBuilderCreateOptions,
-): Promise<XMLBuilder>;
+): XMLBuilder | Promise<XMLBuilder>;
 
 /**
  * @public
@@ -96,6 +104,32 @@ export declare type TextChild = string | number | boolean | null | undefined;
  * @public
  */
 export declare type TextChildren = TextChild | TextChildren[];
+
+/**
+ * Retrieves the current value of the specified context.
+ *
+ * IMPORTANT: When used in async components, this function must be called
+ * before any await statements. Otherwise, the context value may be incorrect
+ * during concurrent rendering, as the global context state could change
+ * between await points.
+ *
+ * Example of correct usage in async components:
+ * ```
+ * async function MyComponent() {
+ *   // Correct: Get context before any awaits
+ *   const value = useContext(myContext);
+ *
+ *   // Now you can use await
+ *   await someAsyncOperation();
+ *
+ *   return <div>{value}</div>;
+ * }
+ * ```
+ *
+ * @param context The context object returned by createContext
+ * @returns The current context value
+ */
+export declare function useContext<T>(context: Context<T>): T;
 
 /**
  * @internal
